@@ -89,7 +89,6 @@ namespace SkalProj_Datastrukturer_Minne
                 Console.WriteLine($"Count: {items.Count}, Capacity: {items.Capacity}");
 
                 string input = Console.ReadLine() ?? "";
-                // check input length
                 char nav = input[0];
                 string value = input.Substring(1);
 
@@ -167,7 +166,6 @@ namespace SkalProj_Datastrukturer_Minne
                 }
 
                 string input = Console.ReadLine() ?? "";
-                // check input length
                 char nav = input[0];
                 string value = input.Substring(1);
 
@@ -219,24 +217,7 @@ namespace SkalProj_Datastrukturer_Minne
              */
 
             string input = Console.ReadLine() ?? "";
-            Console.WriteLine(ReverseString(input));
-        }
-
-        private static string ReverseString(string input)
-        {
-            string reversed = "";
-            Stack<char> chars = new Stack<char>();
-            foreach (char c in input)
-            {
-                chars.Push(c);
-            }
-
-            while (chars.Count > 0)
-            {
-                reversed += chars.Pop();
-            }
-
-            return $"Original string {input}\nReversed string: {reversed}";
+            Console.WriteLine($"Reversed string: {Helpers.ReverseString(input)}");
         }
 
         static void CheckParanthesis()
@@ -259,36 +240,7 @@ namespace SkalProj_Datastrukturer_Minne
                     exit = true;
                 }
 
-                Stack<char> stack = new Stack<char>();
-
-                foreach (char c in input)
-                {
-                    if (c == '(' || c == '[' || c == '{')
-                    {
-                        stack.Push(c);
-                    }
-                    else if (c == ')' || c == ']' || c == '}')
-                    {
-                        if (c == ')' && stack.Count > 0 && stack.Peek() == '(')
-                        {
-                            stack.Pop();
-                        }
-                        else if (c == ']' && stack.Count > 0 && stack.Peek() == '[')
-                        {
-                            stack.Pop();
-                        }
-                        else if (c == '}' && stack.Count > 0 && stack.Peek() == '{')
-                        {
-                            stack.Pop();
-                        }
-                        else
-                        {
-                            stack.Push(c);
-                        }
-                    }
-                }
-
-                Console.WriteLine($"Correct: {stack.Count == 0}");
+                Console.WriteLine($"Correct: {Helpers.IsParanthesisCorrect(input)}");
             }
         }
     }
